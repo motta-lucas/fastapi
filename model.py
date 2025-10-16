@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 class PacktBook(BaseModel):
     id: str
@@ -7,5 +7,17 @@ class PacktBook(BaseModel):
     Isbn: str
 
 class Todo(BaseModel):
+    model_config = ConfigDict(
+        json_schema_extra = {
+            "examples": [{
+                "id": 1,    
+                "item": "Example schema!"
+            }
+            ]
+        }
+    )
+    
     id: int
     item: str
+    
+    
