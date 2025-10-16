@@ -20,4 +20,15 @@ class Todo(BaseModel):
     id: int
     item: str
     
+class TodoItem(BaseModel):
+    item: str
+
+    model_config = ConfigDict(
+        json_schema_extra = {
+            "examples": [{   
+                "item": "Read the next chapter of the book"
+            }
+            ]
+        }
+    )
     
