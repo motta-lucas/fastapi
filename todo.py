@@ -14,6 +14,9 @@ async def add_todo(todo:Todo) -> dict:
 async def retrieve_todos() -> dict:
     return {"todos": todo_list}
 
+todo_check =[]
+
+
 @todo_router.get("/todo/{todo_id}")
 async def get_single_todo(todo_id: int = Path(..., title="The ID of the todo to retrieve.")) -> dict:
     for todo in todo_list:
@@ -21,6 +24,6 @@ async def get_single_todo(todo_id: int = Path(..., title="The ID of the todo to 
             return {
                 "todo": todo
             }
-        return{
-            "message": "Todo with supplied ID doesn't exist."
-        }
+    return{
+        "message": f"Todo with supplied ID doesn't exist.{todo_check}"
+    }
