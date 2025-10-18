@@ -1,4 +1,5 @@
 from pydantic import BaseModel, ConfigDict
+from typing import List
 
 class PacktBook(BaseModel):
     id: str
@@ -29,6 +30,25 @@ class TodoItem(BaseModel):
                 "item": "Read the next chapter of the book"
             }
             ]
+        }
+    )
+
+class TodoItems(BaseModel):
+    todos: List[TodoItem]
+
+    model_config = ConfigDict(
+        json_schema_extra = {
+            "examples": {
+                "todos":[
+                    {
+                        "item":"Example schema 1!"
+                    },
+                    {
+                        "item":"Example schema 2!"
+                    }
+                ]
+            }
+            
         }
     )
     
