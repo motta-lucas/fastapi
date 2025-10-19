@@ -1,5 +1,6 @@
 from pydantic import BaseModel, ConfigDict
-from typing import List
+from typing import List, Optional
+from fastapi import Form
 
 class PacktBook(BaseModel):
     id: str
@@ -8,6 +9,16 @@ class PacktBook(BaseModel):
     Isbn: str
 
 class Todo(BaseModel):
+    id: Optional[int] = None
+    item: str
+
+    @classmethod
+    def as_form(
+            cls,
+            item: str = Form(...)
+    ):
+        return cls(item=item)
+
     model_config = ConfigDict(
         json_schema_extra = {
             "examples": [{
@@ -18,8 +29,7 @@ class Todo(BaseModel):
         }
     )
     
-    id: int
-    item: str
+
     
 class TodoItem(BaseModel):
     item: str
